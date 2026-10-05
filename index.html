@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>स्मार्ट हिंदी कैलकुलेटर: लोन EMI, SIP, FD/RD, GST और उम्र</title>
+<meta name="description" content="हिंदी में मुफ़्त लोन EMI, प्री-पेमेंट, SIP, FD/RD, GST और उम्र कैलकुलेटर। बिना साइन-अप, आपका डेटा आपके डिवाइस में।">
+<meta property="og:title" content="स्मार्ट हिंदी कैलकुलेटर">
+<meta property="og:description" content="लोन, निवेश और GST का हिसाब आसान हिंदी में।">
+<meta name="theme-color" content="#1d4ed8" media="(prefers-color-scheme:light)">
+<meta name="theme-color" content="#0e1525" media="(prefers-color-scheme:dark)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🧮</text></svg>">
+<style>
+:root{--bg:#f4f6f8;--cd:#fff;--tx:#14213d;--mu:#5b6678;--pr:#1d4ed8;--gr:#047857;--rd:#c2410c;--bd:#dde3ea;--in:#f7f9fb}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1525;--cd:#18223a;--tx:#f1f5f9;--mu:#9aa7bd;--pr:#60a5fa;--gr:#34d399;--rd:#fb923c;--bd:#2c3957;--in:#101a2f}}
+:root[data-theme="dark"]{--bg:#0e1525;--cd:#18223a;--tx:#f1f5f9;--mu:#9aa7bd;--pr:#60a5fa;--gr:#34d399;--rd:#fb923c;--bd:#2c3957;--in:#101a2f}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,"Segoe UI",Roboto,"Noto Sans Devanagari",sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--tx);padding:12px;padding-top:calc(12px + env(safe-area-inset-top,0px));padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+.w{max-width:1000px;margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}
+h1{font-size:1.3rem;color:var(--pr)}header p{font-size:.8rem;color:var(--mu)}
+.sm{padding:8px 12px;border:1px solid var(--bd);background:var(--cd);color:var(--tx);border-radius:20px;font-weight:600;cursor:pointer}
+.tabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:14px;padding-bottom:4px;scrollbar-width:none}
+.tabs button{flex:none;padding:10px 14px;border:1px solid var(--bd);background:var(--cd);color:var(--tx);border-radius:10px;font-weight:600;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--pr);color:var(--cd);border-color:var(--pr)}
+section{background:var(--cd);border:1px solid var(--bd);border-radius:16px;padding:16px}
+h2{font-size:1.1rem;color:var(--pr);margin-bottom:6px}h3{font-size:1rem;margin:14px 0 8px}
+.g{display:grid;gap:18px}@media(min-width:760px){.g{grid-template-columns:1fr 1fr}}
+label{display:block;font-weight:600;font-size:.88rem;margin:12px 0 5px}label em{font-style:normal;color:var(--pr);font-weight:700}
+input,select{width:100%;padding:11px;background:var(--in);border:1px solid var(--bd);color:var(--tx);border-radius:8px;font-size:1rem}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid var(--pr);outline-offset:1px}
+input:disabled,select:disabled{opacity:.55;cursor:not-allowed}
+.row{display:flex;gap:8px}.row select{width:110px}
+.st{display:flex;justify-content:space-between;gap:8px;padding:11px 12px;margin-top:8px;background:var(--in);border:1px solid var(--bd);border-radius:10px;font-size:.9rem}
+.v{color:var(--pr);text-align:right}
+.dn{width:170px;height:170px;border-radius:50%;margin:16px auto 8px;background:conic-gradient(var(--pr) calc(var(--a,0)*1%),var(--c2,var(--rd)) 0);-webkit-mask:radial-gradient(circle,#0000 52%,#000 53%);mask:radial-gradient(circle,#0000 52%,#000 53%)}
+.dn.empty{background:var(--bd)!important}
+.lg{text-align:center;font-size:.8rem;color:var(--mu)}.lg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 4px 0 10px}
+.adv{margin-top:12px;padding:12px;border-left:4px solid var(--gr);background:var(--in);border-radius:6px;font-size:.88rem;line-height:1.5}.adv.bad{border-color:var(--rd)}
+.ac{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.ac button,.ac a{flex:1;min-width:120px;padding:11px;border:0;border-radius:8px;color:#fff;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;font-size:.95rem}
+.b1{background:#047857}.b2{background:#6d28d9}.b3{background:#1d4ed8}.b4{background:#b91c1c}.b5{background:#475569}
+.tb{overflow-x:auto;border:1px solid var(--bd);border-radius:8px}table{width:100%;min-width:480px;border-collapse:collapse;font-size:.82rem;text-align:right}th,td{padding:9px 10px;border-bottom:1px solid var(--bd)}th:first-child,td:first-child{text-align:left}
+.qr{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.qr button{padding:9px;border:1px solid var(--bd);background:var(--in);color:var(--tx);border-radius:8px;font-weight:700;cursor:pointer}.qr button.on{background:var(--pr);color:var(--cd)}
+.cl{padding:12px;border-radius:10px;border:1px solid var(--bd)}
+.nt,footer{font-size:.78rem;color:var(--mu);line-height:1.5;margin-top:12px}footer{text-align:center;margin:16px 0}
+#hl{list-style:none}#hl li{display:flex;gap:6px;margin-top:8px}.hi{flex:1;text-align:left;padding:10px;background:var(--in);border:1px solid var(--bd);border-radius:8px;color:var(--tx);cursor:pointer}.x{border:0;background:0;color:var(--rd);font-size:1.1rem;padding:0 10px;cursor:pointer}.mu{color:var(--mu);text-align:center;padding:14px}
+#ts{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#14213d;color:#fff;padding:10px 16px;border-radius:20px;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw;text-align:center}#ts.on{opacity:1}
+.sb{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:16px;z-index:9}.sb[hidden]{display:none}
+.bx{background:var(--cd);border:1px solid var(--bd);border-radius:14px;padding:16px;width:100%;max-width:420px}
+textarea{width:100%;padding:10px;background:var(--in);border:1px solid var(--bd);color:var(--tx);border-radius:8px;font-size:.95rem;resize:none}
+.br{font-weight:800;font-size:1.15rem;color:var(--pr);text-decoration:none}
+.nav{display:flex;gap:6px;overflow-x:auto;margin-bottom:14px;border-bottom:1px solid var(--bd);scrollbar-width:none}
+.nav button{flex:none;padding:9px 14px;border:0;border-bottom:2px solid transparent;background:0;color:var(--mu);font-weight:600;font-size:.95rem;cursor:pointer}
+.nav button[aria-current=page]{color:var(--pr);border-color:var(--pr)}
+.pg>h1{font-size:1.6rem;line-height:1.35;margin-bottom:10px;color:var(--tx)}
+.pg h2{margin:22px 0 8px}.pg p,.pg li{line-height:1.75;font-size:.95rem;margin-bottom:8px}.pg ul{padding-left:20px}
+.hero{padding:18px 2px 6px}.hero p{color:var(--mu);max-width:62ch}
+.cta{margin-top:10px;padding:12px 22px;border:0;border-radius:10px;color:#fff;background:#1d4ed8;font-weight:700;font-size:1rem;cursor:pointer}
+.cds{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.cd2{text-align:left;padding:14px;background:var(--cd);border:1px solid var(--bd);border-radius:12px;color:var(--tx);cursor:pointer;font-size:1rem;font-weight:700}
+.cd2 small{display:block;font-weight:400;color:var(--mu);margin-top:4px;font-size:.82rem;line-height:1.5}
+details{background:var(--cd);border:1px solid var(--bd);border-radius:10px;padding:12px;margin-bottom:8px;line-height:1.7;font-size:.93rem}summary{cursor:pointer;font-weight:600}
+.fl{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:8px}.fl button{background:0;border:0;color:var(--pr);cursor:pointer;font-size:.85rem;text-decoration:underline}
+@media print{header,.nav,.tabs,.ac,footer,#ts,.sb{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+<div class="w">
+<header>
+  <a class="br" href="#home" onclick="pg('home');return false">🧮 स्मार्ट हिंदी कैलकुलेटर</a>
+  <button id="th" class="sm" type="button" aria-label="थीम बदलें">🌙 डार्क</button>
+</header>
+<nav class="nav" id="nav" aria-label="मुख्य मेन्यू"></nav>
+<noscript><p>इस साइट के लिए JavaScript चालू करें।</p></noscript>
+<main>
+<div class="pg" id="pg-home">
+<div class="hero"><h1>लोन, SIP और GST का हिसाब, आसान हिंदी में</h1><p>EMI, प्री-पेमेंट, FD/RD, GST और उम्र की गणना मुफ़्त करें। न साइन-अप, न विज्ञापन। आपका डेटा आपके डिवाइस में ही रहता है।</p><button type="button" class="cta" onclick="pg('calc')">कैलकुलेटर खोलें</button></div>
+<h2>सभी कैलकुलेटर</h2><div class="cds" id="cds"></div>
+<h2>क्यों इस्तेमाल करें</h2>
+<ul><li><b>पूरी तरह हिंदी में:</b> राशि के नीचे "5 लाख" जैसे शब्द भी दिखते हैं।</li><li><b>प्राइवेसी:</b> आपके आँकड़े किसी सर्वर पर नहीं जाते।</li><li><b>बैंक जैसा फ़ॉर्मूला:</b> EMI, SIP और RD के मानक फ़ॉर्मूले इस्तेमाल होते हैं।</li></ul>
+<h2>अक्सर पूछे जाने वाले सवाल</h2>
+<details><summary>क्या यह मुफ़्त है?</summary>हाँ, सभी कैलकुलेटर मुफ़्त हैं और साइन-अप की ज़रूरत नहीं है।</details>
+<details><summary>नतीजे बैंक की EMI से अलग क्यों आते हैं?</summary>बैंक की राउंडिंग, भुगतान की तारीख, प्रोसेसिंग फ़ीस और बीमा से थोड़ा फ़र्क़ आ सकता है। अंतिम आँकड़ा हमेशा बैंक से लें।</details>
+<details><summary>मेरी सेव की गई गणनाएँ कहाँ रहती हैं?</summary>सिर्फ़ इसी ब्राउज़र में। ब्राउज़र का डेटा साफ़ करने पर वे हट जाती हैं।</details>
+</div>
+<div class="pg" id="pg-calc" hidden>
+<nav class="tabs" id="tabs" role="tablist" aria-label="कैलकुलेटर टैब"></nav>
+<div id="main"></div>
+</div>
+<div class="pg" id="pg-about" hidden><h1>हमारे बारे में</h1>
+<p>यह एक मुफ़्त टूल है जो आम लोगों को लोन, निवेश और टैक्स का हिसाब हिंदी में समझाने के लिए बनाया गया है। हमारा मक़सद है कि कोई भी बिना एक्सेल या अंग्रेज़ी के अपने पैसों का फ़ैसला सोच-समझकर ले सके।</p>
+<h2>गणना कैसे होती है</h2>
+<ul><li><b>EMI:</b> P × r × (1+r)<sup>n</sup> ÷ ((1+r)<sup>n</sup> − 1), जहाँ r मासिक ब्याज दर है।</li><li><b>SIP:</b> हर महीने की शुरुआत में निवेश मानकर मासिक चक्रवृद्धि।</li><li><b>FD:</b> तिमाही, मासिक या वार्षिक चक्रवृद्धि, आपकी पसंद से।</li><li><b>RD:</b> हर किश्त पर तिमाही चक्रवृद्धि, जैसा ज़्यादातर बैंक करते हैं।</li><li><b>GST:</b> राशि पर चुनी हुई दर, CGST और SGST आधे-आधे।</li></ul>
+<h2>सीमाएँ</h2><p>ये नतीजे अनुमान हैं। असली राशि बैंक या कंपनी की शर्तों पर निर्भर करती है।</p></div>
+<div class="pg" id="pg-contact" hidden><h1>संपर्क करें</h1>
+<p>सुझाव, गड़बड़ी की रिपोर्ट या नए कैलकुलेटर का अनुरोध भेजें।</p>
+<p>ईमेल: <a id="ct-e" style="color:var(--pr);font-weight:700;word-break:break-all"></a></p>
+<label for="ct-n">आपका नाम</label><input id="ct-n" type="text" oninput="ct()">
+<label for="ct-m">संदेश</label><textarea id="ct-m" rows="5" oninput="ct()" style="resize:vertical"></textarea>
+<div class="ac"><a id="ct-a" class="b3" href="#" target="_blank" rel="noopener">✉️ ईमेल भेजें</a><button type="button" class="b2" onclick="cc()">📋 ईमेल और संदेश कॉपी करें</button></div><p class="nt">ईमेल ऐप न खुले तो "कॉपी करें" दबाकर Gmail में पेस्ट करें।</p>
+<p class="nt" id="ct-no" hidden>संपर्क ईमेल जल्द जोड़ा जाएगा।</p></div>
+<div class="pg" id="pg-privacy" hidden><h1>गोपनीयता नीति</h1><p class="nt">अंतिम अपडेट: 2 अक्टूबर 2026</p>
+<h2>हम क्या जमा करते हैं</h2><p>कुछ नहीं। आप जो राशि या तारीख भरते हैं, वह आपके ब्राउज़र में ही गणना होती है और किसी सर्वर पर नहीं भेजी जाती।</p>
+<h2>ब्राउज़र स्टोरेज</h2><p>आपके "सेव करें" दबाने पर गणना और आपकी थीम पसंद इसी डिवाइस के ब्राउज़र स्टोरेज में रखी जाती है। ब्राउज़र डेटा साफ़ करने या हिस्ट्री टैब से हटाने पर यह मिट जाती है।</p>
+<h2>कुकीज़ और ट्रैकिंग</h2><p>हम कुकीज़, विश्लेषण या विज्ञापन ट्रैकर इस्तेमाल नहीं करते।</p>
+<h2>शेयर करना</h2><p>WhatsApp या रिपोर्ट शेयर करने पर नतीजे सिर्फ़ तभी बाहर जाते हैं जब आप खुद ऐसा चुनें। उसके बाद का डेटा उस ऐप की नीति के अधीन है।</p>
+<h2>बदलाव</h2><p>नीति बदलने पर इसी पेज पर नई तारीख के साथ अपडेट किया जाएगा।</p></div>
+<div class="pg" id="pg-terms" hidden><h1>नियम और शर्तें</h1><p class="nt">अंतिम अपडेट: 2 अक्टूबर 2026</p>
+<h2>उपयोग</h2><p>यह साइट निजी जानकारी के लिए मुफ़्त है। इसे ग़लत, ग़ैरक़ानूनी या नुक़सान पहुँचाने वाले काम में इस्तेमाल न करें।</p>
+<h2>कोई गारंटी नहीं</h2><p>गणनाएँ "जैसी हैं" वैसी दी जाती हैं। हम इनके पूरी तरह सही होने की गारंटी नहीं देते।</p>
+<h2>ज़िम्मेदारी की सीमा</h2><p>इन नतीजों के आधार पर लिए गए किसी भी वित्तीय फ़ैसले की ज़िम्मेदारी आपकी है। हम किसी नुक़सान के लिए उत्तरदायी नहीं होंगे।</p>
+<h2>लागू क़ानून</h2><p>ये शर्तें भारत के क़ानूनों के अधीन हैं।</p></div>
+<div class="pg" id="pg-disclaimer" hidden><h1>अस्वीकरण</h1>
+<p>इस साइट की गणनाएँ सिर्फ़ जानकारी और अनुमान के लिए हैं। ये वित्तीय, निवेश, कर या क़ानूनी सलाह नहीं हैं। हम किसी बैंक, बीमा या निवेश कंपनी के प्रतिनिधि नहीं हैं।</p>
+<p>म्यूचुअल फंड और SIP निवेश बाज़ार जोखिमों के अधीन हैं। पिछला रिटर्न भविष्य की गारंटी नहीं है।</p>
+<p>GST दरें समय-समय पर बदलती हैं। अपनी वस्तु की सही दर सरकारी वेबसाइट या अपने टैक्स सलाहकार से जाँचें।</p></div>
+</main>
+<footer><div class="fl"><button type="button" onclick="pg('privacy')">गोपनीयता नीति</button><button type="button" onclick="pg('terms')">नियम और शर्तें</button><button type="button" onclick="pg('disclaimer')">अस्वीकरण</button><button type="button" onclick="pg('contact')">संपर्क</button></div>© 2026 स्मार्ट हिंदी कैलकुलेटर। नतीजे अनुमानित हैं, वित्तीय सलाह नहीं।</footer>
+</div>
+<div id="sb" class="sb" hidden><div class="bx"><h3 style="margin-top:0">शेयर करने के लिए टेक्स्ट</h3><textarea id="sbt" readonly rows="8"></textarea><div class="ac"><a id="wa" class="b1" href="#" target="_blank" rel="noopener">📲 WhatsApp खोलें</a><button type="button" id="sn" class="b3" onclick="ns()">↗️ शेयर मेन्यू</button><button type="button" class="b2" onclick="cp()">📋 कॉपी करें</button><button type="button" class="b4" onclick="$('sb').hidden=true">बंद करें</button></div><p class="nt">WhatsApp न खुले तो "कॉपी करें" दबाकर किसी भी ऐप में पेस्ट करें।</p></div></div>
+<div id="ts" role="status" aria-live="polite"></div>
+
+<script>
+/* ==================== CONSTANTS ==================== */
+const CONTACT_EMAIL='empiremindset07@gmail.com';
+const MAX_EMI_MONTHS=480;
+
+/* ==================== HELPERS ==================== */
+const $=i=>document.getElementById(i);
+const put=(i,t)=>$(i).textContent=t;
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num=(i,m=1e12)=>{const v=parseFloat($(i).value);return isFinite(v)?Math.min(Math.max(v,0),m):0};
+const inr=v=>'₹'+Math.round(isFinite(v)?v:0).toLocaleString('en-IN');
+const p2=v=>'₹'+(isFinite(v)?v:0).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+const wd=v=>{v=Math.max(0,Math.round(v||0));return v>=1e7?+(v/1e7).toFixed(2)+' करोड़':v>=1e5?+(v/1e5).toFixed(2)+' लाख':v>=1e3?+(v/1e3).toFixed(2)+' हज़ार':v?String(v):''};
+const ym=m=>{m=Math.max(0,Math.round(m||0));if(m===0)return'0 महीने';const y=Math.floor(m/12),r=m%12;return(y?y+' वर्ष ':'')+(r?r+' महीने':'')};
+const emi=(p,r,n)=>{if(n<=0)return 0;r/=1200;return r?p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):p/n};
+
+const dn=(i,a,b)=>{
+  const el=$(i);
+  if((a+b)<=0){el.classList.add('empty');el.style.setProperty('--a',0);return}
+  el.classList.remove('empty');
+  el.style.setProperty('--a',a/(a+b)*100);
+};
+const F=(id,l,v,w)=>`<label for="${id}"><span id="${id}-l">${l}</span><em id="${id}-w"></em></label><input id="${id}" type="number" inputmode="decimal" min="0" step="any" value="${v}"${w?' data-w="1"':''}>`;
+const S=(l,id)=>`<div class="st"><span>${l}</span><b class="v" id="${id}" aria-live="polite">—</b></div>`;
+const DN=(id,a,b,c='--rd')=>`<div class="dn" id="${id}" style="--c2:var(${c})" role="img" aria-label="चार्ट"></div><p class="lg"><i style="background:var(--pr)"></i>${a}<i style="background:var(${c})"></i>${b}</p>`;
+const SEL=(id,l,o)=>`<label for="${id}">${l}</label><select id="${id}">${o.map(x=>`<option value="${x[0]}">${x[1]}</option>`).join('')}</select>`;
+const AC=`<div class="ac">
+  <a class="b1" href="#" target="_blank" rel="noopener" onclick="this.href=wu(this)">📲 WhatsApp</a>
+  <button type="button" class="b5" onclick="share(this)">🔗 शेयर टेक्स्ट</button>
+  <button type="button" class="b2" onclick="save(this)">💾 सेव करें</button>
+  <button type="button" class="b3" onclick="rep(this)">⬇️ रिपोर्ट डाउनलोड</button>
+  <button type="button" class="b4" onclick="prt(this)">🖨️ प्रिंट / PDF</button>
+</div>`;
+const col=(k,c)=>`<div class="cl"><h3 style="color:var(${c});margin-top:0">बैंक ${k=='1'?'A':'B'}</h3>`+F('cmp-p'+k,'ऋण राशि (₹)',500000,1)+F('cmp-r'+k,'ब्याज दर (%)',k=='1'?8.5:9.5)+F('cmp-n'+k,'अवधि (वर्ष)',5)+F('cmp-f'+k,'प्रोसेसिंग फ़ीस व अन्य शुल्क (₹)',k=='1'?10000:0,1)+S('मासिक EMI','cmp-e'+k)+S('कुल ब्याज','cmp-i'+k)+S('कुल लागत (ब्याज + शुल्क)','cmp-c'+k)+'</div>';
+
+/* ==================== TABS ==================== */
+const T=[
+  ['emi','🏦 लोन EMI','मासिक किश्त, कुल ब्याज और भुगतान तालिका'],
+  ['pre','⚡ प्री-पेमेंट','एकमुश्त भुगतान से कितना ब्याज बचेगा'],
+  ['cmp','⚖️ तुलना','दो बैंकों के लोन की कुल लागत'],
+  ['sip','📈 SIP','हर महीने निवेश पर अनुमानित रिटर्न'],
+  ['fd','💰 FD/RD','जमा पर मैच्योरिटी राशि'],
+  ['gst','🏷️ GST','GST जोड़ें या हटाएँ, CGST/SGST के साथ'],
+  ['age','🎂 उम्र','सटीक उम्र और अगला जन्मदिन'],
+  ['his','📁 हिस्ट्री','सेव की गई गणनाएँ दोबारा खोलें']
+];
+
+const P={
+emi:['लोन EMI कैलकुलेटर',
+  F('emi-p','ऋण राशि (₹)',500000,1)+F('emi-r','वार्षिक ब्याज दर (%)',10.5)+
+  '<label for="emi-n">अवधि</label><div class="row"><input id="emi-n" type="number" inputmode="decimal" min="0" step="any" value="5"><select id="emi-u" aria-label="इकाई" onchange="unit()"><option value="12">वर्ष</option><option value="1">महीने</option></select></div>',
+  S('मासिक EMI','emi-e')+S('कुल ब्याज','emi-i')+S('कुल भुगतान','emi-t')+DN('emi-d','मूलधन','ब्याज')+'<div class="adv" id="emi-a"></div>',
+  '<h3>वार्षिक भुगतान तालिका</h3><div class="tb"><table><thead><tr><th>वर्ष</th><th>शुरुआती शेष</th><th>मूलधन</th><th>ब्याज</th><th>अंतिम शेष</th></tr></thead><tbody id="emi-tb"></tbody></table></div>'],
+pre:['लोन प्री-पेमेंट बचत',
+  F('pre-p','बकाया लोन (₹)',1000000,1)+F('pre-r','ब्याज दर (%)',9.5)+F('pre-n','बची अवधि (वर्ष)',15)+F('pre-x','एकमुश्त अतिरिक्त भुगतान (₹)',200000,1)+
+  SEL('pre-m','प्री-पेमेंट के बाद',[['t','अवधि घटाएँ (EMI वही)'],['e','EMI घटाएँ (अवधि वही)']]),
+  S('ब्याज की बचत','pre-s')+S('पुरानी EMI','pre-o')+S('नई EMI','pre-e')+S('नई अवधि','pre-t')+'<div class="adv" id="pre-a"></div>',''],
+cmp:['दो लोन की तुलना',col('1','--pr'),col('2','--gr'),'<div class="adv" id="cmp-a"></div>'],
+sip:['SIP रिटर्न कैलकुलेटर',
+  F('sip-m','मासिक निवेश (₹)',5000,1)+F('sip-r','अपेक्षित रिटर्न (% वार्षिक)',12)+F('sip-y','अवधि (वर्ष)',10)+F('sip-s','हर साल निवेश में बढ़ोतरी (%)',0),
+  S('मैच्योरिटी राशि','sip-t')+S('कुल निवेश','sip-i')+S('अनुमानित लाभ','sip-g')+DN('sip-d','निवेश','लाभ','--gr')+'<p class="nt">रिटर्न की गारंटी नहीं होती; बाज़ार के हिसाब से घट-बढ़ सकता है।</p>',''],
+fd:['FD / RD बचत कैलकुलेटर',
+  SEL('fd-t','बचत का प्रकार',[['fd','FD (एकमुश्त)'],['rd','RD (हर महीने)']])+F('fd-a','जमा राशि (₹)',100000,1)+F('fd-r','वार्षिक ब्याज दर (%)',7)+F('fd-y','अवधि (वर्ष)',5)+
+  SEL('fd-c','FD में ब्याज जुड़ना',[['4','तिमाही'],['12','मासिक'],['1','वार्षिक']]),
+  S('मैच्योरिटी राशि','fd-t2')+S('कुल जमा','fd-i')+S('कुल ब्याज','fd-g')+DN('fd-d','जमा','ब्याज','--gr')+'<p class="nt">RD में तिमाही चक्रवृद्धि मानी गई है, जैसा ज़्यादातर बैंक करते हैं।</p>',''],
+gst:['GST कैलकुलेटर',
+  F('gst-a','राशि (₹)',10000,1)+'<label>GST दर (%)</label><div class="qr" role="group" aria-label="जल्दी GST दर चुनें">'+[0,5,18,40].map(r=>`<button type="button" data-r="${r}" onclick="gr(${r})">${r}%</button>`).join('')+'</div>'+F('gst-r','या अपनी दर लिखें (%)',18)+
+  SEL('gst-m','गणना का प्रकार',[['a','GST जोड़ें (+)'],['s','GST हटाएँ (−)']]),
+  S('GST सहित कुल','gst-f')+S('GST रहित मूल्य','gst-n')+S('कुल GST','gst-x')+S('CGST (आधा)','gst-c')+S('SGST (आधा)','gst-s'),
+  '<p class="nt">22 सितंबर 2025 के सुधार के बाद ज़्यादातर वस्तुओं पर 5%, 18% और 40% दरें हैं। अपनी वस्तु की दर सरकारी स्रोत से जाँच लें।</p>'],
+age:['उम्र कैलकुलेटर',
+  '<label for="age-b">जन्म तिथि</label><input id="age-b" type="date" value="2000-01-01"><label for="age-t">इस तारीख तक</label><input id="age-t" type="date">',
+  S('सटीक उम्र','age-a')+S('कुल पूरे महीने','age-m')+S('कुल दिन','age-d')+S('अगला जन्मदिन','age-n'),''],
+his:['सेव की गई गणनाएँ','','','<p class="nt">ये गणनाएँ सिर्फ़ इसी ब्राउज़र में सेव रहती हैं। किसी पर टैप करके उसे दोबारा खोलें।</p><ul id="hl"></ul><div class="ac"><button type="button" class="b4" onclick="clr()">🗑️ सब साफ़ करें</button></div>']
+};
+
+/* ==================== CALCULATORS ==================== */
+const C={};
+
+C.emi=()=>{
+  const p=num('emi-p'),r=num('emi-r',100);
+  const monthsRaw=Math.round(num('emi-n')*$('emi-u').value);
+  const n=Math.min(monthsRaw,MAX_EMI_MONTHS);
+  const capped=monthsRaw>MAX_EMI_MONTHS;
+  const e=emi(p,r,n),t=e*n,i=Math.max(t-p,0);
+  put('emi-e',inr(e));put('emi-i',inr(i));put('emi-t',inr(t));
+  dn('emi-d',p,i);
+  const a=$('emi-a'),q=p?i/p*100:0;
+  if(capped){a.className='adv bad';a.textContent=`⚠️ अवधि ${MAX_EMI_MONTHS} महीने (40 वर्ष) तक ही दिखाई जाती है। गणना 40 वर्ष पर की गई है।`}
+  else if(!p||!n){a.className='adv';a.textContent='राशि और अवधि भरें।'}
+  else{a.className='adv'+(q>100?' bad':'');
+    a.textContent=q>100?`⚠️ आप मूलधन से ज़्यादा (${Math.round(q)}%) ब्याज दे रहे हैं। अवधि घटाने या प्री-पेमेंट पर सोचें।`:`💡 कुल ब्याज मूलधन का ${Math.round(q)}% है। प्री-पेमेंट टैब में देखें कितना बचा सकते हैं।`}
+  let b=p,s=p,yp=0,yi=0,h='';
+  for(let m=1;m<=n;m++){
+    const x=b*r/1200,y=e-x;b-=y;yi+=x;yp+=y;
+    if(m%12==0||m==n){
+      h+=`<tr><td>${Math.ceil(m/12)}</td><td>${inr(s)}</td><td>${inr(yp)}</td><td>${inr(yi)}</td><td>${inr(Math.max(b,0))}</td></tr>`;
+      s=b;yp=yi=0;
+    }
+  }
+  $('emi-tb').innerHTML=h;
+};
+
+C.pre=()=>{
+  const p=num('pre-p'),r=num('pre-r',100),n=Math.round(num('pre-n',40)*12);
+  const x=Math.min(num('pre-x'),p),t=$('pre-m').value=='t';
+  const e=emi(p,r,n),oi=Math.max(e*n-p,0),q=p-x;
+  let ni=0,nn=n,ne=e,paidOff=false;
+  if(q<=0||!n){paidOff=true;nn=0;ne=0;ni=0}
+  else if(t){
+    const m=r/1200;
+    nn=m?(e>q*m?Math.ceil(Math.log(e/(e-q*m))/Math.log(1+m)-1e-9):n):Math.ceil(q/e-1e-9);
+    ni=e*nn-q;
+  } else {ne=emi(q,r,n);ni=ne*n-q}
+  put('pre-s',inr(Math.max(oi-ni,0)));
+  put('pre-o',inr(e));
+  put('pre-e',paidOff?'—':inr(ne));
+  put('pre-t',paidOff?'लोन पूरा चुक गया 🎉':t?`${ym(nn)} (${ym(Math.max(n-nn,0))} कम)`:`${ym(n)} (वही)`);
+  const a=$('pre-a');
+  if(paidOff){a.className='adv';a.textContent='✅ इस भुगतान के बाद लोन पूरी तरह बंद हो जाता है।'}
+  else if(!p||!n){a.className='adv';a.textContent='बकाया और अवधि भरें।'}
+  else{a.className='adv';
+    a.textContent=Math.max(oi-ni,0)>0?`💡 आप ₹${Math.round(Math.max(oi-ni,0)).toLocaleString('en-IN')} ब्याज बचा सकते हैं।`:'इस राशि से कोई ख़ास बचत नहीं।'}
+};
+
+C.cmp=()=>{
+  const t=[];
+  for(const k of[1,2]){
+    const p=num('cmp-p'+k),n=Math.round(num('cmp-n'+k,40)*12);
+    const e=emi(p,num('cmp-r'+k,100),n),i=Math.max(e*n-p,0),c=i+num('cmp-f'+k);
+    t.push(c);
+    put('cmp-e'+k,inr(e));put('cmp-i'+k,inr(i));put('cmp-c'+k,inr(c));
+  }
+  const d=Math.abs(t[0]-t[1]);
+  put('cmp-a',d<1?'दोनों की कुल लागत लगभग बराबर है।':`✅ बैंक ${t[0]<t[1]?'A':'B'} सस्ता है। ब्याज और शुल्क मिलाकर ${inr(d)} की बचत।`);
+};
+
+C.sip=()=>{
+  let s=num('sip-m'),r=num('sip-r',100)/1200,n=Math.round(num('sip-y',60)*12),g=num('sip-s',100)/100,v=0,inv=0;
+  for(let m=0;m<n;m++){
+    if(m&&m%12==0)s*=1+g;
+    v=(v+s)*(1+r);inv+=s;
+  }
+  put('sip-t',inr(v));put('sip-i',inr(inv));put('sip-g',inr(v-inv));
+  dn('sip-d',inv,Math.max(v-inv,0));
+};
+
+C.fd=()=>{
+  const rd=$('fd-t').value=='rd',a=num('fd-a'),r=num('fd-r',100)/100,y=num('fd-y',60),c=+$('fd-c').value;
+  $('fd-a-l').textContent=rd?'हर महीने की जमा (₹)':'एकमुश्त जमा (₹)';
+  $('fd-c').disabled=rd;
+  let inv=a,v=0;
+  if(rd){
+    const n=Math.round(y*12);inv=a*n;
+    for(let i=1;i<=n;i++)v+=a*Math.pow(1+r/4,4*(n-i+1)/12);
+  } else v=a*Math.pow(1+r/c,c*y);
+  put('fd-t2',inr(v));put('fd-i',inr(inv));put('fd-g',inr(v-inv));
+  dn('fd-d',inv,Math.max(v-inv,0));
+};
+
+C.gst=()=>{
+  const a=num('gst-a'),r=num('gst-r',100),s=$('gst-m').value=='s';
+  const n=s?a/(1+r/100):a,x=s?a-n:a*r/100;
+  put('gst-f',p2(n+x));put('gst-n',p2(n));put('gst-x',p2(x));
+  put('gst-c',p2(x/2));put('gst-s',p2(x/2));
+  document.querySelectorAll('.qr button').forEach(b=>b.classList.toggle('on',+b.dataset.r==r));
+};
+
+const pd=s=>{const a=s.split('-').map(Number);return a.length==3&&a[0]?new Date(a[0],a[1]-1,a[2]):null};
+const td=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+
+C.age=()=>{
+  const b=pd($('age-b').value),t=pd($('age-t').value);
+  if(!b||!t){['age-m','age-d','age-n'].forEach(i=>put(i,'—'));put('age-a','सही तारीखें चुनें');return}
+  if(b>t){['age-m','age-d','age-n'].forEach(i=>put(i,'—'));put('age-a','जन्म तारीख आज से आगे है');return}
+  let y=t.getFullYear()-b.getFullYear(),m=t.getMonth()-b.getMonth(),d=t.getDate()-b.getDate();
+  if(d<0){m--;d+=new Date(t.getFullYear(),t.getMonth(),0).getDate()}
+  if(m<0){y--;m+=12}
+  const u=x=>Date.UTC(x.getFullYear(),x.getMonth(),x.getDate());
+  put('age-a',`${y} वर्ष, ${m} महीने, ${d} दिन`);
+  put('age-m',(y*12+m).toLocaleString('en-IN')+' पूरे');
+  put('age-d',Math.round((u(t)-u(b))/864e5).toLocaleString('en-IN')+' दिन');
+  const mk=yr=>{let n=new Date(yr,b.getMonth(),b.getDate());if(n.getMonth()!==b.getMonth())n=new Date(yr,b.getMonth()+1,0);return n};
+  let n=mk(t.getFullYear());
+  if(n<t)n=mk(t.getFullYear()+1);
+  const l=Math.round((u(n)-u(t))/864e5);
+  put('age-n',l?`${l} दिन बाद · ${n.toLocaleDateString('hi-IN')}`:'आज है! 🎉');
+};
+
+/* ==================== RUN ==================== */
+function run(k){
+  document.querySelectorAll('#'+k+' [data-w]').forEach(e=>{
+    const v=Math.max(0,parseFloat(e.value)||0);
+    $(e.id+'-w').textContent=v?' · '+wd(v):'';
+  });
+  if(C[k])C[k]();
+}
+
+/* ==================== UI ==================== */
+let unitBusy=false;
+function unit(){
+  if(unitBusy)return;
+  const n=$('emi-n'),u=$('emi-u'),o=u.dataset.p||'12';
+  if(u.value!=o){
+    unitBusy=true;
+    n.value=u.value=='1'?Math.round(n.value*12):+(n.value/12).toFixed(1);
+    u.dataset.p=u.value;
+    unitBusy=false;
+  }
+  run('emi');
+}
+function gr(r){$('gst-r').value=r;run('gst')}
+
+function go(k){
+  document.querySelectorAll('#main > section').forEach(s=>s.hidden=s.id!=k);
+  document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.k==k));
+  k=='his'?rh():run(k);
+  scrollTo(0,0);
+}
+
+let tt;
+function toast(m){const t=$('ts');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2200)}
+
+/* ==================== STORAGE ==================== */
+const ls={
+  get:()=>{try{return JSON.parse(localStorage.getItem('ch')||'[]')}catch(e){return[]}},
+  set:v=>{try{localStorage.setItem('ch',JSON.stringify(v));return true}catch(e){return false}}
+};
+
+function save(b){
+  const s=b.closest('section'),v={};
+  s.querySelectorAll('input,select').forEach(e=>v[e.id]=e.value);
+  const allStats=[...s.querySelectorAll('.st')].map(e=>e.children[0].textContent+': '+e.children[1].textContent).filter(x=>!/: —$/.test(x));
+  if(!allStats.length){toast('पहले जानकारी भरें');return}
+  const h=ls.get();
+  h.unshift({id:Date.now(),k:s.id,t:P[s.id][0],s:allStats.join(' • '),v,d:new Date().toLocaleDateString('hi-IN')});
+  toast(ls.set(h.slice(0,50))?'✅ सेव हो गया':'सेव नहीं हो सका। ब्राउज़र ने स्टोरेज रोका है।');
+}
+
+function rh(){
+  const h=ls.get();
+  $('hl').innerHTML=h.length
+    ?h.map(x=>`<li><button type="button" class="hi" onclick="op(${x.id})"><b>${esc(x.t)}</b> · ${esc(x.d)}<br><small>${esc(x.s)}</small></button><button type="button" class="x" aria-label="हटाएँ" onclick="del(${x.id})">✕</button></li>`).join('')
+    :'<li class="mu">अभी कुछ सेव नहीं है। किसी गणना के नीचे "सेव करें" दबाएँ।</li>';
+}
+
+function op(id){
+  const x=ls.get().find(h=>h.id==id);if(!x)return;
+  document.querySelectorAll('#main > section').forEach(s=>s.hidden=s.id!=x.k);
+  document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.k==x.k));
+  for(const i in x.v)if($(i))$(i).value=x.v[i];
+  if(x.k=='emi')$('emi-u').dataset.p=$('emi-u').value;
+  run(x.k);
+  scrollTo(0,0);
+}
+
+function del(id){ls.set(ls.get().filter(h=>h.id!=id));rh()}
+
+let cf=0;
+function clr(){
+  if(!cf){cf=1;toast('सब हटाने के लिए फिर से दबाएँ');setTimeout(()=>cf=0,3000);return}
+  cf=0;ls.set([]);rh();
+}
+
+/* ==================== SHARE ==================== */
+function gather(s){
+  return [...s.querySelectorAll('.st')].map(e=>({l:e.children[0].textContent,v:e.children[1].textContent}));
+}
+function hasResults(s){return gather(s).some(x=>x.v&&x.v!=='—')}
+
+function share(b){
+  const s=b.closest('section');
+  if(!hasResults(s)){toast('पहले जानकारी भरें ताकि नतीजे बनें');return}
+  const lines=gather(s).filter(x=>x.v&&x.v!=='—').map(x=>'• '+x.l+': '+x.v);
+  const t=`*${P[s.id][0]}*\n\n${lines.join('\n')}\n\n_स्मार्ट हिंदी कैलकुलेटर_`;
+  $('sbt').value=t;$('wa').hidden=false;
+  $('wa').href='https://wa.me/?text='+encodeURIComponent(t);
+  $('sn').hidden=!navigator.share;
+  $('sb').hidden=false;
+}
+function wu(b){
+  const s=b.closest('section');
+  if(!hasResults(s))return 'https://wa.me/?text='+encodeURIComponent('स्मार्ट हिंदी कैलकुलेटर देखें');
+  const lines=gather(s).filter(x=>x.v&&x.v!=='—').map(x=>'• '+x.l+': '+x.v);
+  return 'https://api.whatsapp.com/send?text='+encodeURIComponent('*'+P[s.id][0]+'*\n\n'+lines.join('\n'));
+}
+function cc(){
+  $('sbt').value='To: '+CONTACT_EMAIL+'\n\nनाम: '+$('ct-n').value+'\n\n'+$('ct-m').value;
+  $('wa').hidden=true;$('sn').hidden=true;$('sb').hidden=false;$('sbt').select();
+}
+async function ns(){try{await navigator.share({text:$('sbt').value})}catch(e){}}
+async function cp(){
+  const t=$('sbt');t.select();
+  try{await navigator.clipboard.writeText(t.value)}
+  catch(e){try{document.execCommand('copy')}catch(x){}}
+  toast('📋 कॉपी हो गया। अब WhatsApp में पेस्ट करें');
+}
+
+/* ==================== REPORT BUILDER ==================== */
+function buildReport(s){
+  const name=P[s.id][0];
+  const rows=[...s.querySelectorAll('.st')]
+    .filter(e=>e.children[1].textContent&&e.children[1].textContent!=='—')
+    .map(e=>`<tr><td>${esc(e.children[0].textContent)}</td><td>${esc(e.children[1].textContent)}</td></tr>`).join('');
+  const adv=s.querySelector('.adv'),advTxt=adv?adv.textContent.trim():'';
+  const tb=s.querySelector('.tb');
+  return `<!DOCTYPE html><html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(name)} — स्मार्ट हिंदी कैलकुलेटर</title>
+<style>
+body{font-family:system-ui,"Noto Sans Devanagari",sans-serif;max-width:760px;margin:20px auto;padding:0 16px;color:#14213d;line-height:1.6}
+h1{color:#1d4ed8;font-size:1.3rem;margin-bottom:4px}h2{color:#1d4ed8;font-size:1rem;margin-top:20px}
+.brand{color:#666;font-size:12px;margin-bottom:18px}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}
+td,th{border:1px solid #ccc;padding:8px 10px;text-align:left}
+th{background:#f4f6f8}
+.adv{border-left:4px solid #047857;background:#f7f9fb;padding:10px 12px;border-radius:6px;margin:12px 0;font-size:14px}
+.meta{color:#666;font-size:12px;margin-top:20px}
+@media print{button{display:none}}
+.btn{margin-top:16px;padding:10px 18px;background:#1d4ed8;color:#fff;border:0;border-radius:8px;font-weight:700;cursor:pointer;font-size:15px}
+</style></head><body>
+<h1>${esc(name)}</h1>
+<p class="brand">स्मार्ट हिंदी कैलकुलेटर · ${new Date().toLocaleString('hi-IN')}</p>
+${rows?`<table>${rows}</table>`:'<p>कोई नतीजा नहीं।</p>'}
+${advTxt?`<div class="adv">${esc(advTxt)}</div>`:''}
+${tb?`<h2>वार्षिक भुगतान तालिका</h2>${tb.outerHTML}`:''}
+<p class="meta">यह अनुमानित गणना है, वित्तीय सलाह नहीं। बैंक/संस्था की वास्तविक राशि से मिलान करें।</p>
+<button class="btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+</body></html>`;
+}
+
+/* ==================== REPORT DOWNLOAD (real file) ==================== */
+function downloadHTML(html,name){
+  try{
+    const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;a.download=name;
+    document.body.appendChild(a);a.click();
+    setTimeout(()=>{URL.revokeObjectURL(url);a.remove()},1500);
+    return true;
+  }catch(e){return false}
+}
+
+function rep(b){
+  const s=b.closest('section');
+  if(!hasResults(s)){toast('पहले जानकारी भरें ताकि रिपोर्ट बने');return}
+  const html=buildReport(s);
+  const fname=`report-${s.id}-${new Date().toISOString().slice(0,10)}.html`;
+  if(downloadHTML(html,fname)){toast('✅ रिपोर्ट डाउनलोड हुई। फ़ाइल खोलें, वहाँ Print दबाएँ')}
+  else{toast('डाउनलोड नहीं हो सका, प्रिंट आज़माएँ')}
+}
+
+/* ==================== PRINT ==================== */
+function prt(b){
+  const s=b.closest('section');
+  if(!hasResults(s)){toast('पहले जानकारी भरें ताकि रिपोर्ट बने');return}
+  const html=buildReport(s);
+  const w=window.open('','_blank');
+  if(!w){toast('पॉपअप ब्लॉक हुआ। कृपया अनुमति दें');return}
+  w.document.open();w.document.write(html);w.document.close();
+  setTimeout(()=>{try{w.focus();w.print()}catch(e){}},500);
+}
+
+/* ==================== THEME ==================== */
+const rt=document.documentElement;
+try{const t=localStorage.getItem('th');if(t)rt.dataset.theme=t}catch(e){}
+
+function syncTheme(){
+  const d=rt.dataset.theme?rt.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+  const btn=$('th');
+  btn.textContent=d?'☀️ लाइट':'🌙 डार्क';
+  btn.setAttribute('aria-pressed',String(d));
+  btn.setAttribute('aria-label',d?'लाइट थीम पर स्विच करें':'डार्क थीम पर स्विच करें');
+}
+$('th').onclick=()=>{
+  const d=rt.dataset.theme?rt.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+  const n=d?'light':'dark';
+  rt.dataset.theme=n;
+  try{localStorage.setItem('th',n)}catch(e){}
+  syncTheme();
+};
+syncTheme();
+try{matchMedia('(prefers-color-scheme:dark)').addEventListener('change',()=>{if(!rt.dataset.theme)syncTheme()})}catch(e){}
+
+/* ==================== BUILD DOM (clean) ==================== */
+$('tabs').innerHTML=T.map(([k,n])=>
+  `<button type="button" role="tab" id="tab-${k}" aria-controls="${k}" aria-selected="false" data-k="${k}" onclick="go('${k}')">${n}</button>`
+).join('');
+
+$('main').innerHTML=T.map(([k])=>{
+  const[t,i,o,x='']=P[k];
+  return `<section id="${k}" role="tabpanel" aria-labelledby="tab-${k}" hidden><h2>${t}</h2>${k=='his'?x:`<div class="g"><div>${i}</div><div>${o}</div></div>${x}${AC}`}</section>`;
+}).join('');
+
+$('age-t').value=td();
+
+/* ==================== EVENT WIRING ==================== */
+let runTimer;
+document.addEventListener('input',e=>{
+  const s=e.target.closest('#main > section');
+  if(s&&s.id!='his'){
+    clearTimeout(runTimer);
+    runTimer=setTimeout(()=>run(s.id),120);
+  }
+});
+
+const MAXES={'emi-r':100,'pre-r':100,'sip-r':100,'fd-r':100,'gst-r':100,'pre-n':50,'sip-y':60,'fd-y':60,'cmp-r1':100,'cmp-r2':100,'sip-s':200};
+document.addEventListener('blur',e=>{
+  const el=e.target;
+  if(!el||el.tagName!=='INPUT'||el.type!=='number')return;
+  const v=parseFloat(el.value);
+  if(!isFinite(v))return;
+  const mx=MAXES[el.id];
+  if(mx!=null&&v>mx){el.value=mx;toast('अधिकतम '+mx+' तक ही मान्य है')}
+  else if(v<0){el.value=0;toast('ऋणात्मक मान मान्य नहीं')}
+},true);
+
+/* ==================== ROUTING ==================== */
+const PG=['home','calc','about','contact','privacy','terms','disclaimer'];
+const NV=[['home','🏠 होम'],['calc','🧮 कैलकुलेटर'],['about','ℹ️ हमारे बारे में'],['contact','✉️ संपर्क']];
+let pgLock=false;
+
+function pg(p){
+  if(!PG.includes(p))p='home';
+  PG.forEach(x=>$('pg-'+x).hidden=x!=p);
+  document.querySelectorAll('#nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.p==p?'page':'false'));
+  if(location.hash!='#'+p){
+    pgLock=true;
+    try{location.hash=p}catch(e){}
+  }
+  scrollTo(0,0);
+}
+addEventListener('hashchange',()=>{
+  if(pgLock){pgLock=false;return}
+  pg(location.hash.slice(1));
+});
+
+/* ==================== CONTACT ==================== */
+function ct(){
+  const a=$('ct-a'),e=$('ct-e');
+  e.textContent=CONTACT_EMAIL;
+  e.href='mailto:'+CONTACT_EMAIL;
+  if(!CONTACT_EMAIL){a.hidden=true;$('ct-no').hidden=false;return}
+  a.href='mailto:'+CONTACT_EMAIL+'?subject='+encodeURIComponent('कैलकुलेटर फ़ीडबैक')+'&body='+encodeURIComponent($('ct-m').value+'\n\n'+$('ct-n').value);
+}
+
+/* ==================== MISC ==================== */
+$('cds').innerHTML=T.map(([k,n,d])=>`<button type="button" class="cd2" onclick="pg('calc');go('${k}')">${n}<small>${d}</small></button>`).join('');
+$('nav').innerHTML=NV.map(([p,n])=>`<button type="button" data-p="${p}" onclick="pg('${p}')">${n}</button>`).join('');
+document.addEventListener('keydown',e=>{if(e.key=='Escape')$('sb').hidden=true});
+$('sb').onclick=e=>{if(e.target.id=='sb')$('sb').hidden=true};
+
+/* ==================== INIT ==================== */
+ct();
+go('emi');
+pg(location.hash.slice(1));
+</script>
+</body>
+</html>
