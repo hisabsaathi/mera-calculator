@@ -576,7 +576,7 @@ function ct(){
 }
 
 /* ==================== MISC ==================== */
-$('cds').innerHTML=T.map(([k,n,d])=>`<button type="button" class="cd2" onclick="pg('calc');go('${k}')">${n}<small>${d}</small></button>`).join('');
+$('cds').innerHTML=T.map(([k,n,d,l])=>`<button type="button" class="cd2" onclick="${l?`location.href='${l}'`:`pg('calc');go('${k}')`}">${n}<small>${d}</small></button>`).join('');
 $('nav').innerHTML=NV.map(([p,n])=>`<button type="button" data-p="${p}" onclick="pg('${p}')">${n}</button>`).join('');
 document.addEventListener('keydown',e=>{if(e.key=='Escape')$('sb').hidden=true});
 $('sb').onclick=e=>{if(e.target.id=='sb')$('sb').hidden=true};
