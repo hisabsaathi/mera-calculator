@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SIP कैलकुलेटर हिंदी में — म्यूचुअल फंड रिटर्न निकालें | स्मार्ट हिंदी कैलकुलेटर</title>
+<meta name="description" content="मुफ़्त SIP कैलकुलेटर हिंदी में। मासिक निवेश, अपेक्षित रिटर्न और अवधि डालें, मैच्योरिटी राशि और अनुमानित लाभ देखें।">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>📈</text></svg>">
+<style>
+:root{--bg:#f4f6f8;--cd:#fff;--tx:#14213d;--mu:#5b6678;--pr:#1d4ed8;--gr:#047857;--rd:#c2410c;--bd:#dde3ea;--in:#f7f9fb}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1525;--cd:#18223a;--tx:#f1f5f9;--mu:#9aa7bd;--pr:#60a5fa;--gr:#34d399;--rd:#fb923c;--bd:#2c3957;--in:#101a2f}}
+:root[data-theme="dark"]{--bg:#0e1525;--cd:#18223a;--tx:#f1f5f9;--mu:#9aa7bd;--pr:#60a5fa;--gr:#34d399;--rd:#fb923c;--bd:#2c3957;--in:#101a2f}
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,"Segoe UI",Roboto,"Noto Sans Devanagari",sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--tx);padding:12px}
+.w{max-width:1000px;margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--bd)}
+.br{font-weight:800;font-size:1.15rem;color:var(--pr);text-decoration:none}
+.sm{padding:8px 12px;border:1px solid var(--bd);background:var(--cd);color:var(--tx);border-radius:20px;font-weight:600;cursor:pointer}
+section{background:var(--cd);border:1px solid var(--bd);border-radius:16px;padding:16px;margin-bottom:16px}
+h1{font-size:1.4rem;color:var(--pr);margin-bottom:8px}
+h2{font-size:1.1rem;color:var(--pr);margin:16px 0 8px}
+label{display:block;font-weight:600;font-size:.88rem;margin:12px 0 5px}
+input{width:100%;padding:11px;background:var(--in);border:1px solid var(--bd);color:var(--tx);border-radius:8px;font-size:1rem}
+.st{display:flex;justify-content:space-between;padding:11px 12px;margin-top:8px;background:var(--in);border:1px solid var(--bd);border-radius:10px;font-size:.9rem}
+.v{color:var(--pr);text-align:right;font-weight:700}
+.dn{width:170px;height:170px;border-radius:50%;margin:16px auto 8px;background:conic-gradient(var(--pr) calc(var(--a,0)*1%),var(--c2,var(--gr)) 0);-webkit-mask:radial-gradient(circle,#0000 52%,#000 53%);mask:radial-gradient(circle,#0000 52%,#000 53%)}
+.dn.empty{background:var(--bd)!important}
+.lg{text-align:center;font-size:.8rem;color:var(--mu)}.lg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 4px 0 10px}
+.ac{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.ac button,.ac a{flex:1;min-width:120px;padding:11px;border:0;border-radius:8px;color:#fff;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;font-size:.95rem}
+.b1{background:#047857}.b3{background:#1d4ed8}
+.nt{font-size:.78rem;color:var(--mu);line-height:1.5;margin-top:12px}
+footer{text-align:center;font-size:.78rem;color:var(--mu);margin:16px 0}
+</style>
+</head>
+<body>
+<div class="w">
+<header>
+  <a class="br" href="index.html">🧮 स्मार्ट हिंदी कैलकुलेटर</a>
+  <button id="th" class="sm" type="button">🌙 डार्क</button>
+</header>
+<main>
+<section>
+  <h1>SIP कैलकुलेटर — हिंदी में म्यूचुअल फंड रिटर्न निकालें</h1>
+  <p style="color:var(--mu);font-size:.9rem;margin-bottom:12px">अपने मासिक निवेश, अपेक्षित रिटर्न और अवधि डालें।</p>
+  <label>मासिक निवेश (₹) <em id="sip-m-w" style="color:var(--pr);font-style:normal"></em></label>
+  <input id="sip-m" type="number" value="5000" data-w="1">
+  <label>अपेक्षित रिटर्न (% वार्षिक)</label>
+  <input id="sip-r" type="number" value="12">
+  <label>अवधि (वर्ष)</label>
+  <input id="sip-y" type="number" value="10">
+  <label>हर साल निवेश में बढ़ोतरी (%)</label>
+  <input id="sip-s" type="number" value="0">
+  <div class="st"><span>मैच्योरिटी राशि</span><b class="v" id="sip-t">—</b></div>
+  <div class="st"><span>कुल निवेश</span><b class="v" id="sip-i">—</b></div>
+  <div class="st"><span>अनुमानित लाभ</span><b class="v" id="sip-g">—</b></div>
+  <div class="dn" id="sip-d"></div>
+  <p class="lg"><i style="background:var(--pr)"></i>निवेश <i style="background:var(--gr)"></i>लाभ</p>
+  <p class="nt">रिटर्न की गारंटी नहीं होती; बाज़ार के हिसाब से घट-बढ़ सकता है।</p>
+  <div class="ac">
+    <a class="b1" id="wa" href="#" target="_blank">📲 WhatsApp</a>
+    <button type="button" class="b3" onclick="share()">🔗 शेयर टेक्स्ट</button>
+  </div>
+</section>
+<section>
+  <h2>SIP क्या है?</h2>
+  <p style="font-size:.95rem;line-height:1.7">SIP (Systematic Investment Plan) एक ऐसा तरीक़ा है जिसमें आप हर महीने एक तय राशि म्यूचुअल फंड में निवेश करते हैं। यह शेयर बाज़ार के उतार-चढ़ाव से बचने का सबसे अच्छा तरीक़ा माना जाता है।</p>
+  <h2>SIP के फ़ायदे</h2>
+  <ul style="font-size:.95rem;line-height:1.7;padding-left:20px">
+    <li>छोटी राशि से भी शुरुआत की जा सकती है।</li>
+    <li>रुपये की औसत लागत (Rupee Cost Averaging) का फ़ायदा मिलता है।</li>
+    <li>चक्रवृद्धि (Compounding) का पूरा फ़ायदा मिलता है।</li>
+  </ul>
+</section>
+</main>
+<footer>© 2026 स्मार्ट हिंदी कैलकुलेटर · <a href="index.html" style="color:var(--pr)">होम पेज पर जाएँ</a></footer>
+</div>
+<script>
+const $=i=>document.getElementById(i);
+const inr=v=>'₹'+Math.round(isFinite(v)?v:0).toLocaleString('en-IN');
+const wd=v=>{v=Math.max(0,Math.round(v||0));return v>=1e7?+(v/1e7).toFixed(2)+' करोड़':v>=1e5?+(v/1e5).toFixed(2)+' लाख':v>=1e3?+(v/1e3).toFixed(2)+' हज़ार':v?String(v):''};
+function calc(){
+  const m=parseFloat($('sip-m').value)||0, r=(parseFloat($('sip-r').value)||0)/1200, y=Math.round((parseFloat($('sip-y').value)||0)*12), s=(parseFloat($('sip-s').value)||0)/100;
+  let v=0,inv=0,step=m;
+  for(let i=0;i<y;i++){ if(i&&i%12==0) step*=1+s; v=(v+step)*(1+r); inv+=step; }
+  $('sip-t').textContent=inr(v); $('sip-i').textContent=inr(inv); $('sip-g').textContent=inr(v-inv);
+  const el=$('sip-d'); if(v+inv<=0){el.classList.add('empty');el.style.setProperty('--a',0)} else {el.classList.remove('empty');el.style.setProperty('--a',inv/(v)*100)}
+  $('sip-m-w').textContent=m?' · '+wd(m):'';
+  $('wa').href='https://wa.me/?text='+encodeURIComponent('*SIP कैलकुलेटर*\n\n• मैच्योरिटी: '+inr(v)+'\n• कुल निवेश: '+inr(inv)+'\n• अनुमानित लाभ: '+inr(v-inv)+'\n\n_स्मार्ट हिंदी कैलकुलेटर_');
+}
+function share(){ if(navigator.share) navigator.share({title:'SIP कैलकुलेटर',text:$('wa').href.split('text=')[1]}); else alert('कॉपी करें: '+decodeURIComponent($('wa').href.split('text=')[1])); }
+document.addEventListener('input',calc);
+const rt=document.documentElement;
+try{const t=localStorage.getItem('th');if(t)rt.dataset.theme=t}catch(e){}
+function syncTheme(){const d=rt.dataset.theme?rt.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;$('th').textContent=d?'☀️ लाइट':'🌙 डार्क'}
+$('th').onclick=()=>{const d=rt.dataset.theme?rt.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;const n=d?'light':'dark';rt.dataset.theme=n;try{localStorage.setItem('th',n)}catch(e){}syncTheme()};
+syncTheme(); calc();
+</script>
+</body>
+</html>
