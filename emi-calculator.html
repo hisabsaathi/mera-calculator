@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EMI कैलकुलेटर हिंदी में — लोन की मासिक किश्त निकालें | स्मार्ट हिंदी कैलकुलेटर</title>
+<meta name="description" content="मुफ़्त EMI कैलकुलेटर हिंदी में। लोन राशि, ब्याज दर और अवधि डालें, मासिक किश्त, कुल ब्याज और पूरा भुगतान चार्ट देखें।">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🏦</text></svg>">
+<style>
+:root{--bg:#f4f6f8;--cd:#fff;--tx:#14213d;--mu:#5b6678;--pr:#1d4ed8;--gr:#047857;--rd:#c2410c;--bd:#dde3ea;--in:#f7f9fb}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1525;--cd:#18223a;--tx:#f1f5f9;--mu:#9aa7bd;--pr:#60a5fa;--gr:#34d399;--rd:#fb923c;--bd:#2c3957;--in:#101a2f}}
+:root[data-theme="dark"]{--bg:#0e1525;--cd:#18223a;--tx:#f1f5f9;--mu:#9aa7bd;--pr:#60a5fa;--gr:#34d399;--rd:#fb923c;--bd:#2c3957;--in:#101a2f}
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,"Segoe UI",Roboto,"Noto Sans Devanagari",sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--tx);padding:12px}
+.w{max-width:1000px;margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--bd)}
+.br{font-weight:800;font-size:1.15rem;color:var(--pr);text-decoration:none}
+.sm{padding:8px 12px;border:1px solid var(--bd);background:var(--cd);color:var(--tx);border-radius:20px;font-weight:600;cursor:pointer}
+section{background:var(--cd);border:1px solid var(--bd);border-radius:16px;padding:16px;margin-bottom:16px}
+h1{font-size:1.4rem;color:var(--pr);margin-bottom:8px}
+h2{font-size:1.1rem;color:var(--pr);margin:16px 0 8px}
+label{display:block;font-weight:600;font-size:.88rem;margin:12px 0 5px}
+input{width:100%;padding:11px;background:var(--in);border:1px solid var(--bd);color:var(--tx);border-radius:8px;font-size:1rem}
+.st{display:flex;justify-content:space-between;padding:11px 12px;margin-top:8px;background:var(--in);border:1px solid var(--bd);border-radius:10px;font-size:.9rem}
+.v{color:var(--pr);text-align:right;font-weight:700}
+.dn{width:170px;height:170px;border-radius:50%;margin:16px auto 8px;background:conic-gradient(var(--pr) calc(var(--a,0)*1%),var(--c2,var(--rd)) 0);-webkit-mask:radial-gradient(circle,#0000 52%,#000 53%);mask:radial-gradient(circle,#0000 52%,#000 53%)}
+.dn.empty{background:var(--bd)!important}
+.lg{text-align:center;font-size:.8rem;color:var(--mu)}.lg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 4px 0 10px}
+.ac{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.ac button,.ac a{flex:1;min-width:120px;padding:11px;border:0;border-radius:8px;color:#fff;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;font-size:.95rem}
+.b1{background:#047857}.b3{background:#1d4ed8}
+.nt{font-size:.78rem;color:var(--mu);line-height:1.5;margin-top:12px}
+footer{text-align:center;font-size:.78rem;color:var(--mu);margin:16px 0}
+</style>
+</head>
+<body>
+<div class="w">
+<header>
+  <a class="br" href="index.html">🧮 स्मार्ट हिंदी कैलकुलेटर</a>
+  <button id="th" class="sm" type="button">🌙 डार्क</button>
+</header>
+<main>
+<section>
+  <h1>EMI कैलकुलेटर — लोन की मासिक किश्त निकालें</h1>
+  <p style="color:var(--mu);font-size:.9rem;margin-bottom:12px">अपनी लोन राशि, ब्याज दर और अवधि डालें।</p>
+  <label>ऋण राशि (₹) <em id="emi-p-w" style="color:var(--pr);font-style:normal"></em></label>
+  <input id="emi-p" type="number" value="500000" data-w="1">
+  <label>वार्षिक ब्याज दर (%)</label>
+  <input id="emi-r" type="number" value="10.5">
+  <label>अवधि (वर्ष)</label>
+  <input id="emi-n" type="number" value="5">
+  <div class="st"><span>मासिक EMI</span><b class="v" id="emi-e">—</b></div>
+  <div class="st"><span>कुल ब्याज</span><b class="v" id="emi-i">—</b></div>
+  <div class="st"><span>कुल भुगतान</span><b class="v" id="emi-t">—</b></div>
+  <div class="dn" id="emi-d" style="--c2:var(--rd)"></div>
+  <p class="lg"><i style="background:var(--pr)"></i>मूलधन <i style="background:var(--rd)"></i>ब्याज</p>
+  <div class="ac">
+    <a class="b1" id="wa" href="#" target="_blank">📲 WhatsApp</a>
+    <button type="button" class="b3" onclick="share()">🔗 शेयर टेक्स्ट</button>
+  </div>
+</section>
+<section>
+  <h2>EMI क्या है?</h2>
+  <p style="font-size:.95rem;line-height:1.7">EMI (Equated Monthly Installment) वो तय राशि है जो आप हर महीने बैंक को चुकाते हैं। इसमें मूलधन और ब्याज दोनों शामिल होते हैं। शुरुआती सालों में ब्याज का हिस्सा ज़्यादा होता है, और बाद में मूलधन का।</p>
+  <h2>EMI कम कैसे करें?</h2>
+  <ul style="font-size:.95rem;line-height:1.7;padding-left:20px">
+    <li><b>अवधि कम रखें:</b> जितनी कम अवधि, उतनी कम ब्याज।</li>
+    <li><b>प्री-पेमेंट करें:</b> जितनी जल्दी लोन चुकाएँ, उतना फ़ायदा।</li>
+    <li><b>अच्छा CIBIL स्कोर रखें:</b> इससे कम ब्याज दर मिलती है।</li>
+  </ul>
+</section>
+</main>
+<footer>© 2026 स्मार्ट हिंदी कैलकुलेटर · <a href="index.html" style="color:var(--pr)">होम पेज पर जाएँ</a></footer>
+</div>
+<script>
+const $=i=>document.getElementById(i);
+const inr=v=>'₹'+Math.round(isFinite(v)?v:0).toLocaleString('en-IN');
+const wd=v=>{v=Math.max(0,Math.round(v||0));return v>=1e7?+(v/1e7).toFixed(2)+' करोड़':v>=1e5?+(v/1e5).toFixed(2)+' लाख':v>=1e3?+(v/1e3).toFixed(2)+' हज़ार':v?String(v):''};
+const emi=(p,r,n)=>{if(n<=0)return 0;r/=1200;return r?p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):p/n};
+function calc(){
+  const p=parseFloat($('emi-p').value)||0, r=parseFloat($('emi-r').value)||0, n=Math.round((parseFloat($('emi-n').value)||0)*12);
+  const e=emi(p,r,n), t=e*n, i=Math.max(t-p,0);
+  $('emi-e').textContent=inr(e); $('emi-i').textContent=inr(i); $('emi-t').textContent=inr(t);
+  const el=$('emi-d'); if(p+i<=0){el.classList.add('empty');el.style.setProperty('--a',0)} else {el.classList.remove('empty');el.style.setProperty('--a',p/(p+i)*100)}
+  $('emi-p-w').textContent=p?' · '+wd(p):'';
+  $('wa').href='https://wa.me/?text='+encodeURIComponent('*EMI कैलकुलेटर*\n\n• मासिक EMI: '+inr(e)+'\n• कुल ब्याज: '+inr(i)+'\n• कुल भुगतान: '+inr(t)+'\n\n_स्मार्ट हिंदी कैलकुलेटर_');
+}
+function share(){ if(navigator.share) navigator.share({title:'EMI कैलकुलेटर',text:$('wa').href.split('text=')[1]}); else alert('कॉपी करें: '+decodeURIComponent($('wa').href.split('text=')[1])); }
+document.addEventListener('input',calc);
+const rt=document.documentElement;
+try{const t=localStorage.getItem('th');if(t)rt.dataset.theme=t}catch(e){}
+function syncTheme(){const d=rt.dataset.theme?rt.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;$('th').textContent=d?'☀️ लाइट':'🌙 डार्क'}
+$('th').onclick=()=>{const d=rt.dataset.theme?rt.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;const n=d?'light':'dark';rt.dataset.theme=n;try{localStorage.setItem('th',n)}catch(e){}syncTheme()};
+syncTheme(); calc();
+</script>
+</body>
+</html>
