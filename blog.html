@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ब्लॉग — पैसों की जानकारी हिंदी में | स्मार्ट हिंदी कैलकुलेटर</title>
+<meta name="description" content="EMI, SIP, GST, FD और पैसों से जुड़ी हर जानकारी आसान हिंदी में। VedaHQ का 'हिसाब साथी'।">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>📝</text></svg>">
+<style>
+:root{--bg:#f4f6f8;--cd:#fff;--tx:#14213d;--mu:#5b6678;--pr:#1d4ed8;--gr:#047857;--bd:#dde3ea}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1525;--cd:#18223a;--tx:#f1f5f9;--mu:#9aa7bd;--pr:#60a5fa;--gr:#34d399;--bd:#2c3957}}
+:root[data-theme="dark"]{--bg:#0e1525;--cd:#18223a;--tx:#f1f5f9;--mu:#9aa7bd;--pr:#60a5fa;--gr:#34d399;--bd:#2c3957}
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,"Segoe UI",Roboto,"Noto Sans Devanagari",sans-serif}
+body{background:var(--bg);color:var(--tx);padding:12px;line-height:1.7}
+.w{max-width:900px;margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--bd)}
+.br{font-weight:800;font-size:1.15rem;color:var(--pr);text-decoration:none;display:flex;align-items:center;gap:8px}
+.br img{width:36px;height:36px;border-radius:8px}
+.sm{padding:8px 12px;border:1px solid var(--bd);background:var(--cd);color:var(--tx);border-radius:20px;font-weight:600;cursor:pointer}
+h1{font-size:1.5rem;color:var(--pr);margin-bottom:8px}
+h2{font-size:1.2rem;color:var(--pr);margin:22px 0 10px}
+.intro{color:var(--mu);font-size:.95rem;margin-bottom:20px}
+.card{display:block;background:var(--cd);border:1px solid var(--bd);border-radius:14px;padding:16px;margin-bottom:14px;text-decoration:none;color:var(--tx);transition:transform .15s}
+.card:hover{transform:translateY(-2px);border-color:var(--pr)}
+.card h3{color:var(--pr);font-size:1.1rem;margin-bottom:6px}
+.card p{color:var(--mu);font-size:.9rem;margin-bottom:8px}
+.card span{color:var(--pr);font-size:.85rem;font-weight:600}
+footer{text-align:center;font-size:.78rem;color:var(--mu);margin:24px 0}
+footer a{color:var(--pr)}
+</style>
+</head>
+<body>
+<div class="w">
+<header>
+  <a class="br" href="index.html"><img src="logo.svg" alt="लोगो"> स्मार्ट हिंदी कैलकुलेटर</a>
+  <button id="th" class="sm" type="button">🌙 डार्क</button>
+</header>
+<main>
+<h1>📝 ब्लॉग — पैसों की जानकारी, आसान हिंदी में</h1>
+<p class="intro">EMI, SIP, GST, FD और पैसों से जुड़ी हर जानकारी। कोई भारी-भरकम शब्द नहीं, बस आसान भाषा में समझो।</p>
+
+<a class="card" href="emi-kaise-nikale.html">
+  <h3>💰 EMI कैसे निकाले? पूरा फ़ॉर्मूला हिंदी में</h3>
+  <p>बैंक वाला फ़ॉर्मूला, उदाहरण के साथ समझो। ₹10 लाख के लोन पर EMI कितनी बनेगी?</p>
+  <span>पढ़ें →</span>
+</a>
+
+<a class="card" href="sip-vs-fd.html">
+  <h3>📈 SIP vs FD — किसमें ज़्यादा फ़ायदा है?</h3>
+  <p>दोनों के फ़ायदे-नुकसान, रिटर्न की तुलना, और किसे क्या चुनना चाहिए।</p>
+  <span>पढ़ें →</span>
+</a>
+
+<a class="card" href="gst-kya-hai.html">
+  <h3>🏷️ GST क्या है? 5 मिनट में पूरी समझ</h3>
+  <p>CGST, SGST, IGST — सब कुछ आसान भाषा में। कौन सी वस्तु पर कितना टैक्स?</p>
+  <span>पढ़ें →</span>
+</a>
+
+</main>
+<footer>© 2026 VedaHQ · <a href="index.html">होम पेज पर जाएँ</a></footer>
+</div>
+<script>
+const rt=document.documentElement;
+try{const t=localStorage.getItem('th');if(t)rt.dataset.theme=t}catch(e){}
+function syncTheme(){const d=rt.dataset.theme?rt.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;document.getElementById('th').textContent=d?'☀️ लाइट':'🌙 डार्क'}
+document.getElementById('th').onclick=()=>{const d=rt.dataset.theme?rt.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;const n=d?'light':'dark';rt.dataset.theme=n;try{localStorage.setItem('th',n)}catch(e){}syncTheme()};
+syncTheme();
+</script>
+</body>
+</html>
